@@ -1,6 +1,6 @@
 // TODO: Include packages needed for this application
 const inquirer = require(`inquirer`);
-var markdown = ``;
+const fs = require("fs");
 
 inquirer.prompt([
   {
@@ -34,9 +34,14 @@ inquirer.prompt([
     name: 'test'
   },
   {
-    type: 'input',
+    type: 'list',
     message: 'What is your license?',
-    name: 'license'
+    name: 'license',
+    choices: ["MIT license",
+      "Apache License",
+      "The Unlicense",
+      "Boost Software License 1.0",
+      "GNU General Public License v3.0"]
   },
   {
     type: 'input',
