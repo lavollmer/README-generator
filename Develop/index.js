@@ -89,14 +89,17 @@ function writeToFile(response) {
     <h2>## Tests</h2>
       <p>${response.test}</p>
     <h2>## Questions</h2>
+    <p>${response.github}</p>
+    <p>${response.email}</p>
 </body>
 
 </html>`
   fs.writeFile('index.html', readme, (err) =>
     err ? console.error(err) : console.log('Success!')
+  )
 }
 // TODO: Create a function to initialize app
-function init() { }
+// function init() { }
 
-// Function call to initialize app
-init();
+// // Function call to initialize app
+// init();
