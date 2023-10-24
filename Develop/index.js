@@ -83,9 +83,11 @@ function writeToFile(response) {
     <h2>## Usage</h2>
       <p>${response.usage}</p>
     <h2>## License</h2>
+      <p>${response.license}</p>
     <h2>## Contributing</h2>
       <p>${response.contribution}</p>
     <h2>## Tests</h2>
+      <p>${response.test}</p>
     <h2>## Questions</h2>
 </body>
 
