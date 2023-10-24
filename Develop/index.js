@@ -1,25 +1,7 @@
 // TODO: Include packages needed for this application
 const inquirer = require(`inquirer`);
 const fs = require("fs");
-const { makeBadge, ValidationError } = require('badge-maker');
-import { makeBadge, ValidationError } from 'badge-maker'
 
-//received from npmjs.com for making badge
-const format = {
-  label: 'build',
-  message: '${response.license}',
-  color: 'blue',
-  style: 'flat'
-}
-
-const svg = makeBadge(format)
-console.log(svg) // <svg...
-
-try {
-  makeBadge({ response })
-} catch (e) {
-  console.log(e) // ValidationError: Field `message` is required
-}
 //prompt questions from inquirer including a list type
 // TODO: Create an array of questions for user input
 inquirer.prompt([
