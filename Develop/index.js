@@ -1,8 +1,27 @@
 // TODO: Include packages needed for this application
 const inquirer = require(`inquirer`);
 const fs = require("fs");
+const { makeBadge, ValidationError } = require('badge-maker');
+import { makeBadge, ValidationError } from 'badge-maker'
 
+//received from npmjs.com for making badge
+const format = {
+  label: 'build',
+  message: '${response.license}',
+  color: 'blue',
+  style: 'flat'
+}
+
+const svg = makeBadge(format)
+console.log(svg) // <svg...
+
+try {
+  makeBadge({ response })
+} catch (e) {
+  console.log(e) // ValidationError: Field `message` is required
+}
 //prompt questions from inquirer including a list type
+// TODO: Create an array of questions for user input
 inquirer.prompt([
   {
     type: 'input',
@@ -38,10 +57,10 @@ inquirer.prompt([
     type: 'list',
     message: 'What is your license?',
     name: 'license',
-    choices: ["MIT license",
+    choices: ["Boost Software License 1.0",
+      "MIT license",
       "Apache License",
       "The Unlicense",
-      "Boost Software License 1.0",
       "GNU General Public License v3.0"]
   },
   {
@@ -59,8 +78,6 @@ inquirer.prompt([
     writeToFile(response)
   )
 
-// TODO: Create an array of questions for user input
-// const questions = [];
 
 // TODO: Create a function to write README file
 function writeToFile(response) {
@@ -69,37 +86,44 @@ function writeToFile(response) {
 
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
-  <title>README Generator<title>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0">
+  <title>README Generator - ${response.projectName}</title>
 </head>
 
-<body>
-  <h1># ${response.projectName} </h1>
-    <h2>## project description</h2>
-      <p>${response.description}</p>
-    <h2>## Table of Contents</h2>
-    <h2>## Installation</h2>
-      <p>${response.installation}</p>
-    <h2>## Usage</h2>
-      <p>${response.usage}</p>
-    <h2>## License</h2>
-      <p>${response.license}</p>
-    <h2>## Contributing</h2>
-      <p>${response.contribution}</p>
-    <h2>## Tests</h2>
-      <p>${response.test}</p>
-    <h2>## Questions</h2>
-    <p>${response.github}</p>
-    <p>${response.email}</p>
+<body style="margin: 30px; font-family:Georgia, 'Times New Roman', Times, serif">
+  <h1 style="border-bottom: 1px gainsboro solid;"># ${response.projectName} </h1>
+  <h2 style="border-bottom: 1px gainsboro solid;">## Project Description</h2>
+  <p>${response.description}</p>
+  <h2 style="border-bottom: 1px gainsboro solid;">## Table of Contents</h2>
+  <h2 style="border-bottom: 1px gainsboro solid;">## Installation</h2>
+  <p>${response.installation}</p>
+  <h2 style="border-bottom: 1px gainsboro solid;">## Usage</h2>
+  <p>${response.usage}</p>
+  <h2 style="border-bottom: 1px gainsboro solid;">## License</h2>
+  <p>${response.license}</p>
+  <h2 style="border-bottom: 1px gainsboro solid;">## Contributing</h2>
+  <p>${response.contribution}</p>
+  <h2 style="border-bottom: 1px gainsboro solid;">## Tests</h2>
+  <p>${response.test}</p>
+  <h2 style="border-bottom: 1px gainsboro solid;">## Questions</h2>
+  <p>For more questions or comments on the project, please reach out to the following below.</p>
+  <p>Github Portfolio: <a href="${response.github}">${response.github}</a></p>
+  <p>Email: ${response.email}</p>
 </body>
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
+  integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js"
+  integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
+<script src="./Develop/index.js"></script>
 
 </html>`
   fs.writeFile('index.html', readme, (err) =>
-    err ? console.error(err) : console.log('Success!')
+    err ? console.error(err) : console.log('Done!')
   )
 }
 // TODO: Create a function to initialize app
 // function init() { }
 
-// // Function call to initialize app
+// Function call to initialize app
 // init();
