@@ -7,7 +7,7 @@
   <title>README Generator</title>
 </head>
 
-<body>
+<body style="margin: 30px; font-family:Georgia, 'Times New Roman', Times, serif">
   <h1 style="border-bottom: 1px gainsboro solid;"># ${response.projectName} </h1>
   <h2 style="border-bottom: 1px gainsboro solid;">## Project Description</h2>
   <p>${response.description}</p>
@@ -23,8 +23,9 @@
   <h2 style="border-bottom: 1px gainsboro solid;">## Tests</h2>
   <p>${response.test}</p>
   <h2 style="border-bottom: 1px gainsboro solid;">## Questions</h2>
-  <p>${response.github}</p>
-  <p>${response.email}</p>
+  <p>For more questions or comments on the project, please reach out to the following below.</p>
+  <p>Github Portfolio: <a href="${response.github}">${response.github}</a></p>
+  <p>Email: ${response.email}</p>
 </body>
 
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
