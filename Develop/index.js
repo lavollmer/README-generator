@@ -2,11 +2,12 @@
 const inquirer = require(`inquirer`);
 const fs = require("fs");
 
+//prompt questions from inquirer including a list type
 inquirer.prompt([
   {
     type: 'input',
     message: 'What is your project title?',
-    name: 'projectname'
+    name: 'projectName'
   },
   {
     type: 'input',
@@ -21,7 +22,7 @@ inquirer.prompt([
   {
     type: 'input',
     message: 'What is your usage information?',
-    name: 'linkedin'
+    name: 'usage'
   },
   {
     type: 'input',
@@ -55,15 +56,43 @@ inquirer.prompt([
   }
 ])
   .then((response) =>
-    createPage(response)
+    writeToFile(response)
   )
 
 // TODO: Create an array of questions for user input
-const questions = [];
+// const questions = [];
 
 // TODO: Create a function to write README file
-function writeToFile(fileName, data) { }
+function writeToFile(response) {
+  readme = `<!DOCTYPE html>
+<html lang="en">
 
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+  <title>README Generator<title>
+</head>
+
+<body>
+  <h1># ${response.projectName} </h1>
+    <h2>## project description</h2>
+      <p>${response.description}</p>
+    <h2>## Table of Contents</h2>
+    <h2>## Installation</h2>
+      <p>${response.installation}</p>
+    <h2>## Usage</h2>
+      <p>${response.usage}</p>
+    <h2>## License</h2>
+    <h2>## Contributing</h2>
+      <p>${response.contribution}</p>
+    <h2>## Tests</h2>
+    <h2>## Questions</h2>
+</body>
+
+</html>`
+  fs.writeFile('index.html', readme, (err) =>
+    err ? console.error(err) : console.log('Success!')
+}
 // TODO: Create a function to initialize app
 function init() { }
 
